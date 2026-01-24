@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">click</button>
+    <div id="box">hello world</div>
+</body>
+<script>
+    const btn = document.querySelector('#btn')
+    const box = document.querySelector('#box')
+    let count = 1;
+    
+    function delay(duration){
+        const now = new Date()
+        while(new Date() - now < duration){}
+    }
+
+    function debounce(fn, delay=300, immediate=false) {
+        return function() {
+            
+        }
+    }
+
+    btn.addEventListener('click', () =>{
+        box.innerHTML = `every thing is change ${++count}`;
+        delay(3000)
+    })
+</script>
+</html>
