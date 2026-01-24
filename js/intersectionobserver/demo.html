@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+         }
+        #box {
+            width: 100vw;
+            height: 100vh;
+            background-color: red;
+        }
+        #observer{
+            height: 50px;
+            width: 50px;
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <div id="observer"></div>
+</body>
+<script>
+    const intersectionobserver = new  IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                console.log(entry.isIntersecting)
+            })
+        },
+        {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        }
+    )
+    intersectionobserver.observe(document.querySelector('#observer'))
+
+</script>
+</html>
