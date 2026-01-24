@@ -37,6 +37,18 @@
         }
     }
 
+    function throttle(fn, delay){
+        let last = 0;
+        return function(...args){
+            const now = new Date();
+            if(now - last > delay){
+                last = now;
+                fn.apply(this, args);
+            }
+        }
+    }
+    
+
     
     btn.addEventListener('click',debounce(function(){
         box.innerHTML = 'clicked ' + count++ + ' times';
