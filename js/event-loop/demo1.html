@@ -19,15 +19,28 @@
         while(new Date() - now < duration){}
     }
 
-    function debounce(fn, delay=300, immediate=false) {
-        return function() {
-            
+    function debounce(fn, delay,immediate = false){
+        let timer = null;
+        return function(...args){
+            if(timer) clearTimeout(timer);
+            if(immediate){
+                const callNow = !timer;
+                timer = setTimeout(() => {
+                    timer = null;
+                }, delay);
+                if(callNow) fn.apply(this, args);
+            } else {
+                timer = setTimeout(() => {
+                    fn.apply(this, args);
+                }, delay);
+            }
         }
     }
 
-    btn.addEventListener('click', () =>{
-        box.innerHTML = `every thing is change ${++count}`;
-        delay(3000)
-    })
+    
+    btn.addEventListener('click',debounce(function(){
+        box.innerHTML = 'clicked ' + count++ + ' times';
+        delay(2000); // 模拟一个耗时操作
+    }, 1000, true))
 </script>
 </html>
