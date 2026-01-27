@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            border: 10px solid black;
+            padding: 20px;
+            box-sizing: content-box;
+            background-color: lightgray;
+        }
+        .test{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">box</div>
+</body>
+<script>
+    const box = document.querySelector('#box')
+    console.log("box", box)
+    box.classList.add('test')
+    console.log("width", box.clientWidth)
+    console.log("height", box.clientHeight)
+</script>
+</html>
