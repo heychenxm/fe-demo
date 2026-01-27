@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            border: 1px solid red;
+            /* overflow: hidden; */
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            /* display: flow-root; */
+        }
+        .content{
+            border: 1px solid red;
+        }
+        .content1,.content2{
+            float: right;
+            width: 100px;
+            height: 100px;
+        }
+        /* #box::after{
+            content: '';
+            display: table;
+            clear: both;
+        } */
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="content content1">hello world1</div>
+        <div class="content content2">hello world2</div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <!-- 
+        1.添加伪类元素（推荐，兼容性好）
+        2.bfc overflow:hidden; display: flow-root
+        3.添加dom元素（不推荐）
+    -->
+</body>
+</html>
