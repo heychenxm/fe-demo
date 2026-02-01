@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #box{
+            color: gray;
+        }
+        #box::before{
+            content: 'before';
+            color: red;
+        }
+        #box::after{
+            content: 'after';
+            color: blue;
+        }
+        #box::first-letter{
+            color: green;
+            font-size: 200px;
+        }
+        #box:hover{
+            color: red;
+        }
+
+        #box::selection{
+            /* background: gray; */
+            color: white;
+            border-radius: 10px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores modi in, doloremque quia voluptate veniam voluptates hic vitae impedit aliquid qui, optio, perspiciatis illum laudantium voluptatibus omnis sint. Alias, cupiditate!</div>
+</body>
+</html>

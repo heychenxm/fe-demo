@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Web Worker 演示</title>
+  <style>
+    .container { margin: 20px; }
+    button { padding: 8px 16px; cursor: pointer; }
+    #result { margin-top: 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>Web Worker 耗时计算演示</h3>
+    <button id="startBtn">开始执行复杂计算</button>
+    <button id="stopBtn">终止 Worker</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    // 1. 获取页面元素
+    const startBtn = document.getElementById('startBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const resultDiv = document.getElementById('result');
+    let worker = null; // 存储 Worker 实例
+
+    // 2. 「开始计算」按钮点击事件：创建 Worker 并发送消息
+    startBtn.addEventListener('click', () => {
+      // 判重：避免重复创建 Worker
+      if (worker) return;
+
+      // 核心：创建 Worker 实例，指定 Worker 脚本文件
+      worker = new Worker('worker.js');
+
+      // 3. 给 Worker 发送消息（可传任意可序列化数据：数字、字符串、对象、数组）
+      const taskData = {
+        num: 30000, // 要计算的数值（模拟大数据量）
+        taskName: '大数字求和'
+      };
+      worker.postMessage(taskData);
+      resultDiv.innerHTML = '计算中...（页面可正常操作，不会卡顿）';
+
+      // 4. 接收 Worker 子线程返回的消息
+      worker.onmessage = (e) => {
+        resultDiv.innerHTML = `计算完成！结果：${e.data.result}，耗时：${e.data.costTime}ms`;
+        // 计算完成后，可销毁 Worker（释放资源）
+        worker.terminate();
+        worker = null;
+      };
+
+      // 5. 监听 Worker 错误（脚本加载失败、子线程语法错误等）
+      worker.onerror = (error) => {
+        resultDiv.innerHTML = `Worker 执行错误：${error.message}（行号：${error.lineno}）`;
+        worker.terminate();
+        worker = null;
+      };
+    });
+
+    // 6. 「终止 Worker」按钮点击事件：手动销毁 Worker
+    stopBtn.addEventListener('click', () => {
+      if (worker) {
+        worker.terminate(); // 主线程主动终止 Worker，子线程立即停止执行
+        worker = null;
+        resultDiv.innerHTML = 'Worker 已被手动终止';
+      }
+    });
+  </script>
+  <script src="./work.js"></script>
+</body>
+</html>

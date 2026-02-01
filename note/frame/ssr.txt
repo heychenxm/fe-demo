@@ -1,0 +1,9 @@
+ssr (service side render) 服务器段渲染
+
+csr (client side render) 客服端渲染
+
+前端发展史
+1.静态页面阶段
+2.服务器段渲染阶段
+3.客服端渲染（前后段分离）
+4.同构阶段（vue ssr， ssr+csr）
