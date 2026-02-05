@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+const VITE_APP_NAME = import.meta.env.VITE_APP_NAME
+console.log("VITE_APP_NAME", VITE_APP_NAME)
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-[clamp(1.5rem,3vw,3rem)] font-bold text-center text-green-600">
+      {{ VITE_APP_NAME }}
+    </h1>
+    <p class="text-center mt-4 text-gray-600">
+    hello world
+    </p>
+    <p class="text-center mt-2 text-gray-500">
+    hello world
+    </p>
+    <HelloWorld msg="Vue3 + TS + Tailwind + Jest" />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
